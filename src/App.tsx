@@ -4,24 +4,30 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 // Screens
 import {TimerScreen, StopWatchScreen, AddActivityScreen} from './screens';
 
+// Store
+import {Provider} from 'react-redux';
+import {store} from './store';
+
 const {Navigator, Screen} = createNativeStackNavigator();
 
 const App = () => {
   return (
-    <NavigationContainer>
-      <Navigator>
-        <Screen
-          name="Home"
-          component={TimerScreen}
-          options={{
-            title: 'Timer',
-          }}
-        />
+    <Provider store={store}>
+      <NavigationContainer>
+        <Navigator>
+          <Screen
+            name="Home"
+            component={TimerScreen}
+            options={{
+              title: 'Timer',
+            }}
+          />
 
-        <Screen name="Cronometro" component={StopWatchScreen} />
-        <Screen name="Adicinar atividade" component={AddActivityScreen} />
-      </Navigator>
-    </NavigationContainer>
+          <Screen name="Cronometro" component={StopWatchScreen} />
+          <Screen name="Adicinar atividade" component={AddActivityScreen} />
+        </Navigator>
+      </NavigationContainer>
+    </Provider>
   );
 };
 
